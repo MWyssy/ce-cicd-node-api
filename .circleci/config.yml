@@ -26,8 +26,8 @@ jobs:
       - setup_remote_docker
       - aws-ecr/build-and-push-image:
           repo: node-api
-          path: "node-api"
-          build-path: "node-api"
+          path: ./
+          build-path: "./"
           tag: ${CIRCLE_BUILD_NUM}
           public-registry-alias: f2m3w5c9
           public-registry: true
