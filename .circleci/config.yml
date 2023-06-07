@@ -13,8 +13,7 @@ jobs:
       - checkout
       - run:
           name: Init
-          command: sudo npm install -g npm@latest
-          command: npm init -y
+          command: sudo npm install -g npm@latest && npm init -y
           working_directory: ~/ce-cicd-node-api/node-api
       - node/install-packages:
           cache-path: ~/project/node_modules
