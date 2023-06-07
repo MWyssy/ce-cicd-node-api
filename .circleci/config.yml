@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run: sudo npm install -g npm@latest
       - node/install-packages:
-          cache-path ~/project/node_modules
+          cache-path: ~/project/node_modules
           override-ci-command: npm install
       run: npm run start
   build-image-and-push:
