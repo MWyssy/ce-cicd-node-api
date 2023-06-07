@@ -11,7 +11,7 @@ jobs:
     steps:
       - run:
           name: Build
-          command: npm run start
+          command: npm i
           working_directory: ~/ce-cicd-node-api/node-api
   build-image-and-push:
     working_directory: ~/ce-cicd-node-api
