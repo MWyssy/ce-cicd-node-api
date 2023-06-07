@@ -5,14 +5,17 @@ orbs:
 
 jobs:
   build-and-test:
+    executor: node/default
     working_directory: ~/ce-cicd-node-api
     docker:
       - image: cimg/node:20.2.0
     steps:
-      - run:
-          name: Build
-          command: npm init
-          working_directory: ~/ce-cicd-node-api/node-api
+      - checkout
+      - run: sudo npm install -g npm@latest
+      - node/install-packages:
+          cache-path ~/project/node_modules
+          override-ci-command: npm install
+      run: npm run start
   build-image-and-push:
     working_directory: ~/ce-cicd-node-api
     docker:
