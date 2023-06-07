@@ -1,0 +1,37 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.1.0
+  aws-ecr: circleci/aws-ecr@8.2.1
+
+jobs:
+  build:
+    working_directory: ~/ce-cicd-node-api
+    docker:
+      - image: cimg/node:20.2.0
+    steps:
+      - run:
+          name: Build
+          command: npm run start
+          working_directory: ~/ce-cicd-node-api/node-api
+  build-image-and-push:
+    working_directory: ~/ce-cicd-node-api
+    docker:
+      - image: cimg/aws:2023.05
+    steps:
+      - setup_remote_docker
+      - aws-ecr/build-and-push-image:
+        repo: node-api
+        path: "node-api"
+        build-path: "node-api"
+        tag: ${CIRCLE_BUILD_NUM}
+        public-registry-alias: f2m3w5c9
+        public-registry: true
+        create-repo: true
+
+workflows:
+  demo-app-pipeline:
+    jobs:
+      - build
+      - build-image-and-push:
+          requires:
+            - build
