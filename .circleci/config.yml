@@ -4,7 +4,7 @@ orbs:
   aws-ecr: circleci/aws-ecr@8.2.1
 
 jobs:
-  build:
+  build-and-test:
     working_directory: ~/ce-cicd-node-api
     docker:
       - image: cimg/node:20.2.0
@@ -31,7 +31,7 @@ jobs:
 workflows:
   demo-app-pipeline:
     jobs:
-      - build
+      - build-and-test
       - build-image-and-push:
           requires:
-            - build
+            - build-and-test
