@@ -15,7 +15,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      run: npm run start
+      - run: npm run start
   build-image-and-push:
     working_directory: ~/ce-cicd-node-api
     docker:
