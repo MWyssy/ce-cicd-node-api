@@ -8,16 +8,13 @@ jobs:
     executor: node/default
     working_directory: ~/ce-cicd-node-api
     docker:
-      - image: cimg/node:20.2.0
+      - image: cimg/base:stable
     steps:
       - checkout
-      - run:
-          name: Init
-          command: sudo npm install -g npm@latest && npm init -y
-          working_directory: ~/ce-cicd-node-api/node-api
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
+      - node/install:
+          install-npm: true
+          install-express: true
+          node-version: "16.13"
       - run:
           name: Start
           command: npm run start
