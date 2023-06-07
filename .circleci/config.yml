@@ -16,7 +16,7 @@ jobs:
       - node/install-packages
       - run:
           name: Start
-          command: npm run start
+          command: nohup npm run start &
           working_directory: ~/ce-cicd-node-api
   build-image-and-push:
     working_directory: ~/ce-cicd-node-api
