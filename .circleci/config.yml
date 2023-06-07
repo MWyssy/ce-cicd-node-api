@@ -12,9 +12,8 @@ jobs:
     steps:
       - checkout
       - node/install:
-          install-npm: true
-          install-express: true
-          node-version: "16.13"
+          node-version: latest
+      - node/install-packages
       - run:
           name: Start
           command: npm run start
