@@ -11,14 +11,13 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
-      - run: cd node-api
       - node/install:
           node-version: latest
       - node/install-packages
       - run:
           name: Start
           command: npm run start
-          working_directory: ~/ce-cicd-node-api/node-api
+          working_directory: ~/ce-cicd-node-api
   build-image-and-push:
     working_directory: ~/ce-cicd-node-api
     docker:
